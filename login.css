@@ -1,0 +1,39 @@
+body {
+  background: url("Assets/hackhathon background.png");
+  background-size: cover;
+  /* background-position-x: 3rem; */
+  /* background-position-y: 3rem; */
+}
+
+.custom-shadow {
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  /* box-shadow: 20px 20px 60px #7c558e, -20px -20px 60px #ffffff; */
+}
+
+.user {
+  display: flex;
+  justify-content: center;
+}
+
+.user i {
+  font-size: 5rem;
+  text-align: center;
+  position: relative;
+  bottom: 10px;
+}
+
+.input input {
+  font-family: "Parkinsans", sans-serif;
+  font-weight: 200;
+  transition: 0.3s ease-out;
+}
+
+.input input:focus {
+  border: 0px solid black;
+  scale: 1.03;
+}
+
+.login {
+  font-family: "Parkinsans", sans-serif;
+  font-weight: 600;
+}
