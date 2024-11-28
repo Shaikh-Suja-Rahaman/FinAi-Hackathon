@@ -5,6 +5,10 @@ let registerBtn = document.querySelector('.register')
 let wrong = document.querySelector('span#wrong')
 console.log(wrong);
 
+if (localStorage.getItem('isLoggedIn') === 'true') {
+    window.location.href = "./index.html";
+
+}
 
 let username = /^(?!.*[-_]{2})[a-zA-Z0-9](?:[a-zA-Z0-9_-]{1,14}[a-zA-Z0-9])?$/  //regex for username
 let password = 'admin123'
@@ -26,7 +30,7 @@ loginBtn.addEventListener('click', async (e) => {
     isCorrect = true; //remove after creating a api call, just for testting
 
     if (isCorrect) {
-
+        localStorage.setItem('isLoggedIn', 'true')
         window.location.href = "./index.html";
 
     } else {
@@ -52,6 +56,7 @@ registerBtn.addEventListener('click', async (e) => {
 
         wrong.innerText = 'Registered Successfully! Please Login'
         wrong.style.display = 'block'
+        localStorage.setItem('isRegistered', 'true')
     }
 
 })
