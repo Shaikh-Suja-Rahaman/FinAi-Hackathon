@@ -5,13 +5,31 @@ let registerBtn = document.querySelector('.register')
 let wrong = document.querySelector('span#wrong')
 console.log(wrong);
 
-if (localStorage.getItem('isLoggedIn') === 'true') {
-    window.location.href = "./index.html";
+passEye = document.querySelector('#EYE')
+EYEbutton = document.querySelector('#EYEbutton')
 
-}
+// if (localStorage.getItem('isLoggedIn') === 'true') {  //temporarily disabled for testing
+//     window.location.href = "./index.html";
+
+// }
 
 let username = /^(?!.*[-_]{2})[a-zA-Z0-9](?:[a-zA-Z0-9_-]{1,14}[a-zA-Z0-9])?$/  //regex for username
 let password = 'admin123'
+
+passEye.addEventListener('click', e => {
+    if (passEye.classList.contains('bi-eye')) {
+
+        passEye.classList.remove('bi-eye')
+        passEye.classList.add('bi-eye-slash')
+        Pass.type = 'text'
+    } else {
+        passEye.classList.remove('bi-eye-slash')
+        passEye.classList.add('bi-eye')
+        Pass.type = 'password'
+
+    }
+})
+
 
 Username.addEventListener('input', (e) => {
     if (!username.test(Username.value)) {
