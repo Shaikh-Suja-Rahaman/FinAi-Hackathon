@@ -1,6 +1,7 @@
 let Username = document.querySelector('.input #Username')
 let Pass = document.querySelector('.input #password')
 let loginBtn = document.querySelector('.loginBtn button')
+let registerBtn = document.querySelector('.register')
 let wrong = document.querySelector('span#wrong')
 console.log(wrong);
 
@@ -17,15 +18,39 @@ Username.addEventListener('input', (e) => {
     }
 })
 
-loginBtn.addEventListener('click', e => {
+loginBtn.addEventListener('click', async (e) => {
     console.log(Username.value);
 
+    let isCorrect = await fetch('') //fetch call to the api for chcecking if the username and password combo is correct
 
-    if (Username.value === 'admin' && Pass.value === 'admin123') {
+    isCorrect = true; //remove after creating a api call, just for testting
+
+    if (isCorrect) {
 
         window.location.href = "./index.html";
 
     } else {
+        wrong.innerText = 'Wrong Username or Password'
+        wrong.style.display = 'block'
+    }
+
+})
+
+registerBtn.addEventListener('click', async (e) => {
+
+    let userPresent = await fetch('') //return a boolean to check if user is present by fetching a call to the api
+
+    userPresent = true; //just to check remove after api is implemented
+
+    if (userPresent) {
+        wrong.innerText = 'Username already present!\nLogin or choose another username'
+        wrong.style.display = 'block'
+    }
+    else {
+
+        //Add a push call to add a username to the database
+
+        wrong.innerText = 'Registered Successfully! Please Login'
         wrong.style.display = 'block'
     }
 
