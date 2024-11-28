@@ -3,6 +3,7 @@ body {
   background-size: cover;
   /* background-position-x: 3rem; */
   /* background-position-y: 3rem; */
+  -webkit-font-smoothing: antialiased;
 }
 
 .custom-shadow {
