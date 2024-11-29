@@ -7,7 +7,11 @@
   </head>
   <body>
     <script>
-      window.location.href = "./login.html";
+      if (localStorage.getItem("Username") != null) {
+        window.location.href = "./Dashboard/";
+      } else {
+        window.location.href = "./login.html";
+      }
     </script>
   </body>
 </html>
