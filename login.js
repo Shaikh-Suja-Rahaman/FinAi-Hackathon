@@ -9,7 +9,7 @@ passEye = document.querySelector('#EYE')
 EYEbutton = document.querySelector('#EYEbutton')
 
 // if (localStorage.getItem('isLoggedIn') === 'true') {  //temporarily disabled for testing
-//     window.location.href = "./index.html";
+//     window.location.href = "./Dashboard/index.html";
 
 // }
 
@@ -49,7 +49,7 @@ loginBtn.addEventListener('click', async (e) => {
 
     if (isCorrect) {
         localStorage.setItem('isLoggedIn', 'true')
-        window.location.href = "./index.html";
+        window.location.href = "./Dashboard/index.html";
 
     } else {
         wrong.innerText = 'Wrong Username or Password'
