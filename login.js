@@ -8,10 +8,10 @@ console.log(wrong);
 passEye = document.querySelector('#EYE')
 EYEbutton = document.querySelector('#EYEbutton')
 
-// if (localStorage.getItem('isLoggedIn') === 'true') {  //temporarily disabled for testing
-//     window.location.href = "./Dashboard/index.html";
+if (localStorage.getItem('isLoggedIn') === 'true') {  //temporarily disabled for testing
+    window.location.href = "./Dashboard/index.html";
 
-// }
+}
 
 let username = /^(?!.*[-_]{2})[a-zA-Z0-9](?:[a-zA-Z0-9_-]{1,14}[a-zA-Z0-9])?$/  //regex for username
 let password = 'admin123'
