@@ -45,7 +45,7 @@ loginBtn.addEventListener('click', async (e) => {
 
     if (isCorrect) {
         localStorage.setItem('isLoggedIn', 'true')
-        window.location.href = "./Dashboard/index.html";
+        window.location.href = ".././Dashboard/index.html";
 
     } else {
         wrong.innerText = 'Wrong Username or Password'
