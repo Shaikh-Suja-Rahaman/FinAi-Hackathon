@@ -74,9 +74,22 @@ loginBtn.addEventListener('click', async (e) => {
 
 registerBtn.addEventListener('click', async (e) => {
 
-    let userPresent = await fetch('http://localhost:8000/chk-usr') //return a boolean to check if user is present by fetching a call to the api
+    let res = await fetch('http://localhost:8000/chkUser', {
+        method: 'POST',
+        body: JSON.stringify({
+            "username": `${Username.value}`,
+            'password': `${Pass.value}`
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }) //return a boolean to check if user is present by fetching a call to the api
 
-    userPresent = true; //just to check remove after api is implemented
+    let res1 = await res.json()
+
+    let userPresent = res1.result
+
+    // userPresent = true; //just to check remove after api is implemented
 
     if (userPresent) {
         wrong.innerText = 'Username already present!\nLogin or choose another username'

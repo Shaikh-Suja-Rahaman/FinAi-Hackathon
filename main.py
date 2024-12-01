@@ -20,17 +20,17 @@ app.add_middleware(
 @app.post('/auth')
 async def postAuth(info : loginInfo):
     print(info.username)
-    flag = authentication(info.username , info.password)
+    flag = await authentication(info.username , info.password)
     if (flag):
         return {"result" : "true"}
     
     return {"result" : "false"}
-    
+
     
 @app.post('/register')  #TO add to database
 async def uploadUser(info : loginInfo):
     
-    flag = register(info.username , info.password)
+    flag = await register(info.username , info.password)
     
     if (flag):
         return {"result" : "true"}
@@ -38,9 +38,9 @@ async def uploadUser(info : loginInfo):
     return {"result" : "false"}
 
 
-@app.post('/chk-usr') # to check if the user already exists
+@app.post('/chkUser') # to check if the user already exists
 async def userExists(info : loginInfo):
-    flag = checkUser(info.username , info.password)
+    flag = await checkUser(info.username , info.password)
     
     if (flag):
         return {"result" : "true"}
