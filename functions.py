@@ -3,9 +3,8 @@ import mysql.connector
 mydb = mysql.connector.connect(
   host="sql12.freemysqlhosting.net",
   user="sql12748894",
-    port="3306",
   password="HvR3SPcsl1",
-database = "main"
+    database = "sql12748894"
 )
 username1 = "username" #will get from js
 password1 = "password" #will also get from js
