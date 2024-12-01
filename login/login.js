@@ -95,11 +95,23 @@ registerBtn.addEventListener('click', async (e) => {
             }
         })
 
+        res = await res.json()
+
+        let registered = res.result
+
         //Add a push call to add a username to the database
 
-        wrong.innerText = 'Registered Successfully! Please Login'
-        wrong.style.display = 'block'
-        localStorage.setItem('isRegistered', 'true')
+        if (registered) {
+            wrong.innerText = 'Registered Successfully! Please Login'
+            wrong.style.display = 'block'
+            localStorage.setItem('isRegistered', 'true')
+        }
+        else {
+            wrong.innerText = 'Error! Please try again'
+            wrong.style.display = 'block'
+            localStorage.setItem('isRegistered', 'false')
+
+        }
     }
 
 })
