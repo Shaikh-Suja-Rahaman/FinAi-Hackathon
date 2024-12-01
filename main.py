@@ -16,8 +16,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-
 @app.post('/auth')
 async def postAuth(info : loginInfo):
     
