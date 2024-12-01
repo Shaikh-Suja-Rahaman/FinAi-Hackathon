@@ -13,14 +13,11 @@ password1 = "qweqwe123" #will also get from js
 
 async def checkUser(username,password):
 
-    mycursor.execute("select user from loginInfo")
-    usernames = mycursor.fetchall()
-    flag = False
-    for name in usernames:
-        if(name[0]==username):
-            flag = True
-            break
-    return flag
+    mycursor.execute("select user, pass from loginInfo where user = %s", (username,))
+    data = mycursor.fetchone()
+    if not data:
+        return False
+    return True
 
 async def register(username, password): #password and user name entered by the used
 
@@ -31,11 +28,11 @@ async def authentication(username, password):
 
     mycursor.execute("select pass from loginInfo where user = %s", (username,))
     out = mycursor.fetchone()
-    print(out[0])
-    if(out[0]==password):
-        return True
-    else:
+    
+    if(not out or out[0]!=password):
         return False
+    else:
+        return True
     
 
 

@@ -19,19 +19,11 @@ app.add_middleware(
 
 @app.post('/auth')
 async def postAuth(info : loginInfo):
-    print(info.username)
-    
-    exists = await checkUser(info.username , info.password)
-    
-    if(exists):    
-    
-        flag = await authentication(info.username , info.password)
-        if (flag):
-            return {"result" : "true"}
-        
-        return {"result" : "false"}
-    else:
-        return {"result" : "false"}
+
+    flag = await authentication(info.username , info.password)
+    if (flag):
+        return {"result" : "true"}
+    return {"result" : "false"}
 
     
 @app.post('/register')  #TO add to database

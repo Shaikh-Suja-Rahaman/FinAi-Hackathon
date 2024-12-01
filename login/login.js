@@ -90,7 +90,7 @@ registerBtn.addEventListener('click', async (e) => {
 
     // userPresent = true; //just to check remove after api is implemented
 
-    if (userPresent) {
+    if (userPresent === "true") {
         wrong.innerText = 'Username already present!\nLogin or choose another username'
         wrong.style.display = 'block'
     }
