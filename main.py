@@ -19,7 +19,8 @@ app.add_middleware(
 
 @app.post('/auth')
 async def postAuth(info : loginInfo):
-    flag authentication(info.username , info.password)
+    print(info.username)
+    flag = authentication(info.username , info.password)
     if (flag):
         return {"result" : "true"}
     

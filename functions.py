@@ -6,11 +6,12 @@ mydb = mysql.connector.connect(
   password="HvR3SPcsl1",
   database = "sql12748894"
 )
+
 mycursor = mydb.cursor()
 username1 = "hasjdh" #will get from js
 password1 = "qweqwe123" #will also get from js
 
-def checkUser(username,password):
+async def checkUser(username,password):
 
     mycursor.execute("select user from loginInfo")
     usernames = mycursor.fetchall()
@@ -21,12 +22,12 @@ def checkUser(username,password):
             break
     return flag
 
-def register(username, password): #password and user name entered by the used
+async def register(username, password): #password and user name entered by the used
 
     mycursor.execute("INSERT INTO loginInfo (`user`, `pass`) VALUES (%s, %s)", (username, password))
     mydb.commit()
 
-def authentication(username, password):
+async def authentication(username, password):
 
     mycursor.execute("select * from loginInfo")
     infos = mycursor.fetchall()
@@ -42,7 +43,7 @@ def authentication(username, password):
         else:
             print("User does not exist")
 
-print(authentication(username1,password1))
+
 
 
 
