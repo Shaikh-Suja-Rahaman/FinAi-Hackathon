@@ -3,7 +3,6 @@ let Pass = document.querySelector('.input #password')
 let loginBtn = document.querySelector('.loginBtn button')
 let registerBtn = document.querySelector('.register')
 let wrong = document.querySelector('span#wrong')
-console.log(wrong);
 
 passEye = document.querySelector('#EYE')
 EYEbutton = document.querySelector('#EYEbutton')
@@ -55,7 +54,7 @@ loginBtn.addEventListener('click', async (e) => {
 
     res = await res.json()
 
-    console.log(res);
+    console.log(res.result);
 
     isCorrect = res.result
 

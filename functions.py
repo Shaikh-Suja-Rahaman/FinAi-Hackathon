@@ -30,9 +30,9 @@ async def register(username, password): #password and user name entered by the u
 async def authentication(username, password):
 
     mycursor.execute("select pass from loginInfo where user = %s", (username,))
-    out = mycursor.fetchall()
-    print(out[0][0])
-    if(out[0][0]==password):
+    out = mycursor.fetchone()
+    print(out[0])
+    if(out[0]==password):
         return True
     else:
         return False
