@@ -3,7 +3,7 @@ from fastapi.params import Body
 from pydantic import BaseModel, ValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict
-import schema.py
+from schema import *
 
 app = FastAPI()
 
@@ -20,5 +20,9 @@ app.add_middleware(
 
 @app.post('/auth')
 async def postAuth(info : loginInfo):
-    if (info.Username == "Admin")
+    
+    if (info.username == "admin" and info.password == "123"):
+        return {"result" : "true"}
+    
+    return {"result" : "false"}
     

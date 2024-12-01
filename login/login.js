@@ -38,10 +38,28 @@ Username.addEventListener('input', (e) => {
 
 loginBtn.addEventListener('click', async (e) => {
     console.log(Username.value);
+    console.log(Pass.value);
 
-    let isCorrect = await fetch('') //fetch call to the api for chcecking if the username and password combo is correct
+    let isCorrect
 
-    isCorrect = true; //remove after creating a api call, just for testting
+    let res = await fetch("http://localhost:8000/auth", {
+        method: "POST",
+        body: JSON.stringify({
+            "username": `${Username.value}`,
+            "password": `${Pass.value}`
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }) //fetch call to the api for chcecking if the username and password combo is correct
+
+    res = await res.json()
+
+    console.log(res);
+
+    isCorrect = res.result
+
+    // isCorrect = true; //remove after creating a api call, just for testting
 
     if (isCorrect) {
         localStorage.setItem('isLoggedIn', 'true')
