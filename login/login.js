@@ -74,7 +74,7 @@ loginBtn.addEventListener('click', async (e) => {
 
 registerBtn.addEventListener('click', async (e) => {
 
-    let userPresent = await fetch('') //return a boolean to check if user is present by fetching a call to the api
+    let userPresent = await fetch('http://localhost:8000/chk-usr') //return a boolean to check if user is present by fetching a call to the api
 
     userPresent = true; //just to check remove after api is implemented
 
@@ -83,6 +83,17 @@ registerBtn.addEventListener('click', async (e) => {
         wrong.style.display = 'block'
     }
     else {
+
+        let res = await fetch("http://localhost:8000/register", {
+            method: "POST",
+            body: JSON.stringify({
+                "username": `${Username.value}`,
+                "password": `${Pass.value}`  //Sending username and password to backend
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
 
         //Add a push call to add a username to the database
 
