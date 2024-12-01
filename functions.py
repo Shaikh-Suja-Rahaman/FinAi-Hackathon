@@ -29,20 +29,14 @@ async def register(username, password): #password and user name entered by the u
 
 async def authentication(username, password):
 
-    mycursor.execute("select * from loginInfo")
-    infos = mycursor.fetchall()
-    # flag = False
-    for info in infos:
-        print(info[0])
-        if(checkUser(info[0],info[1])==True):
-            if(username==info[0]):
-                if(password==info[1]):
-                    return True
-                else:
-                    return False #
-        else:
-            print("User does not exist")
-
+    mycursor.execute("select pass from loginInfo where user = %s", (username,))
+    out = mycursor.fetchall()
+    print(out[0][0])
+    if(out[0][0]==password):
+        return True
+    else:
+        return False
+    
 
 
 
