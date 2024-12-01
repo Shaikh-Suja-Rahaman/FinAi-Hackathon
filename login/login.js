@@ -60,7 +60,7 @@ loginBtn.addEventListener('click', async (e) => {
 
     // isCorrect = true; //remove after creating a api call, just for testting
 
-    if (isCorrect) {
+    if (isCorrect === "true") {
         localStorage.setItem('isLoggedIn', 'true')
         window.location.href = ".././Dashboard/index.html";
 

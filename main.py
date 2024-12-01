@@ -11,7 +11,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins (use specific domains in production)
+    allow_origins=["http://localhost:5501" , "*"],  # Allow all origins (use specific domains in production)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -21,7 +21,7 @@ app.add_middleware(
 async def postAuth(info : loginInfo):
     print(info.username)
     
-    exists = await chkUser(info.username , info.password)
+    exists = await checkUser(info.username , info.password)
     
     if(exists):    
     
