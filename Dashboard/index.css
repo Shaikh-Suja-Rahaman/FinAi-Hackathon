@@ -5,6 +5,10 @@
   font-style: normal;
 }
 
-#weighingScale{
+#weighingScale {
   color: black;
 }
+
+/* .text-3xl text-black {
+  z-index: 10 !important;
+} */
