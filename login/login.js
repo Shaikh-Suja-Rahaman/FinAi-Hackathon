@@ -62,6 +62,7 @@ loginBtn.addEventListener('click', async (e) => {
 
     if (isCorrect === "true") {
         localStorage.setItem('isLoggedIn', 'true')
+        localStorage.setItem('currentUsername', `${Username.value}`)
         window.location.href = ".././Dashboard/index.html";
 
     } else {
