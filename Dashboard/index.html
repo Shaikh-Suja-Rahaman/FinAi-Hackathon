@@ -18,6 +18,7 @@
     />
     <link rel="stylesheet" href="index.css" />
     <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <main class="w-[90%] mx-auto my-2">
@@ -36,14 +37,14 @@
           class="Left min-h-full grow-[0.7] rounded-3xl flex flex-col box-border justify-between gap-8"
         >
           <div
-            class="h-60 box-border bg-[#FAFAF5] rounded-3xl border-[#E6E6E6] border-2 flex overflow-hidden"
+            class="h-96 box-border bg-[#FAFAF5] rounded-3xl border-[#E6E6E6] border-2 flex overflow-hidden"
           >
             <div
               id="loanEligibility"
               class="inline-flex justify-center items-center Left w-[30%] h-full bg-[#E6E6E6] rounded-r-none text-center z-0"
             >
               <i>
-                <svg class="h-40 w-40" viewBox="0 0 16 16">
+                <svg class="h-28 w-28" viewBox="0 0 16 16">
                   xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                   fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16
                   16" >
@@ -64,24 +65,28 @@
               </i>
             </div>
             <div
-              class="flex-1 h-full Right justify-center items-center relative"
+              class="flex flex-1 h-full Right justify-center items-center relative"
             >
-              <div class="text-3xl text-black z-10 relative">
+              <!-- Loan eligibilty checker -->
+              <div class="text-3xl text-black z-10 justify-items-center">
+                <!-- Section Title -->
                 Check Your Loan Eligibilty!
               </div>
               <button
                 class="absolute bg-[#426B1F] px-4 py-2 rounded-md text-white bottom-4 right-4"
               >
+                <!-- Check Now Button -->
                 Check Now
               </button>
             </div>
           </div>
           <div
-            class="h-60 box-border bg-[#FAFAF5] rounded-3xl border-[#E6E6E6] border-2 flex overflow-hidden"
+            class="h-96 box-border bg-[#FAFAF5] rounded-3xl border-[#E6E6E6] border-2 flex overflow-hidden"
           >
             <div
               class="flex justify-center items-center Left w-[30%] h-full bg-[#E6E6E6] rounded-3xl rounded-r-none text-center"
             >
+              <!-- Investment Adviser -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="100"
@@ -97,9 +102,9 @@
               </svg>
             </div>
             <div
-              class="flex-1 h-full Right justify-center items-center relative"
+              class="flex flex-1 h-full Right justify-center items-center relative"
             >
-              Investment Adviser
+              <div class="text-3xl">Investment Adviser</div>
               <button
                 class="bg-[#426B1F] px-4 py-2 rounded-md text-white absolute bottom-4 right-4"
               >
@@ -112,9 +117,15 @@
           class="Right bg-[#FAFAF5] grow-[0.3] rounded-3xl border-[#E6E6E6] border-2 flex flex-col box-border overflow-hidden"
         >
           <div
-            class="Top grow-[0.3] bg-[#E6E6E6] rounded-b-none box-border"
-          ></div>
-          <div class="Bottom grow-[0.7] bg-[#FAFAF5] text-center my-2">
+            class="Top grow-[0.2] bg-[#E6E6E6] rounded-b-none box-border flex justify-center items-center"
+          >
+            <div class="chartContainer bg-[#E6E6E6] p-4 rounded-md">
+              <!-- Chart Container -->
+              <canvas id="myChart" width="400" height="200"></canvas>
+            </div>
+          </div>
+          <div class="Bottom grow-[0.9] bg-[#FAFAF5] text-center my-2">
+            <!-- Expense Analyser Section -->
             Expense Analyser
           </div>
         </div>
@@ -122,5 +133,8 @@
     </main>
 
     <script src="dashboard.js"></script>
+    <script src="line.js"></script>
+    <script src="chart.js"></script>
+    <!-- Include the new chart.js script -->
   </body>
 </html>
