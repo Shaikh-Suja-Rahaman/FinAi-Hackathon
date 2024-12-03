@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
       labels: [
         "January",
         "February",
-        "March",
+        "March",  
         "April",
         "May",
         "June",
