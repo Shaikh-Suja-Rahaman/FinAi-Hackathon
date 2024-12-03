@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict
 from schema import *
 from functions import *
+from datetime import datetime
 
 app = FastAPI()
 
@@ -45,3 +46,25 @@ async def userExists(info : loginInfo):
         return {"result" : "true"}
     
     return {"result" : "false"}
+
+@app.post('/expenses/add')
+async def add_expense(expense: dict):
+    try:
+        required_fields = ['username', 'amount', 'description', 'date']
+        if not all(field in expense for field in required_fields):
+            return {"result": "false", "error": "Missing required fields"}
+            
+        success = await insert_expense(expense)  # Call refactored function
+        return {"result": str(success).lower()}
+    except Exception as e:
+        print(f"Error adding expense: {e}")
+        return {"result": "false", "error": "Internal server error"}
+
+@app.get('/expenses/{username}')
+async def get_expenses(username: str):
+    try:
+        expenses = await get_user_expenses(username)
+        return {"expenses": expenses}
+    except Exception as e:
+        print(f"Error getting expenses: {e}")
+        return {"expenses": [], "error": "Internal server error"}

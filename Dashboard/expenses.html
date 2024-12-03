@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Detailed Expenses</title>
+    <link rel="stylesheet" href="../dist/output.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="bg-[#FAFAF5] p-8">
+    <div class="max-w-4xl mx-auto">
+      <!-- Add back button -->
+      <button
+        onclick="window.location.href='index.html'"
+        class="my-5 bg-[#426B1F] text-white box-border px-5 py-2 rounded-md overflow-hidden"
+      >
+        Back
+      </button>
+
+      <h1 class="text-3xl mb-8">Detailed Expenses</h1>
+      <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+        <canvas id="detailedChart" height="400"></canvas>
+      </div>
+      <div id="expenseList" class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl mb-4">Expense History</h2>
+        <div id="expenseItems"></div>
+      </div>
+    </div>
+    <script src="expenses.js"></script>
+  </body>
+</html>
