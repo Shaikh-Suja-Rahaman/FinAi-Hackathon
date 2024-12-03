@@ -14,5 +14,45 @@
         window.location.href = "./login/login.html";
       }
     </script>
+    <div
+      class="Bottom grow-[0.9] bg-[#FAFAF5] p-4 flex justify-center items-center"
+    >
+      <div class="w-full max-w-md">
+        <div class="text-2xl mb-4">Expense Analyser</div>
+        <div class="flex justify-between items-center mb-4">
+          <div class="text-xl">
+            Today's Total: $<span id="dailyTotal">0</span>
+          </div>
+          <button
+            onclick="window.location.href='expenses.html'"
+            class="bg-[#426B1F] px-4 py-2 rounded-md text-white"
+          >
+            View Details
+          </button>
+        </div>
+        <form id="expenseForm" class="flex flex-col gap-4 items-center">
+          <input
+            type="number"
+            id="amount"
+            placeholder="Amount"
+            class="border rounded px-4 py-2 w-full"
+            required
+          />
+          <input
+            type="text"
+            id="description"
+            placeholder="Description"
+            class="border rounded px-4 py-2 w-full"
+            required
+          />
+          <button
+            type="submit"
+            class="bg-[#426B1F] px-4 py-2 rounded-md text-white w-full"
+          >
+            Add Expense
+          </button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

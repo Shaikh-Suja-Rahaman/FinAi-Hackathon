@@ -137,26 +137,29 @@
                 View Details
               </button>
             </div>
-            <form id="expenseForm" class="flex gap-2">
+            <form
+              id="expenseForm"
+              class="flex flex-col items-center gap-4 w-full max-w-md mx-auto"
+            >
               <input
                 type="number"
                 id="amount"
                 placeholder="Amount"
-                class="border rounded px-2 py-1"
+                class="border rounded px-4 py-2 w-full"
                 required
               />
               <input
                 type="text"
                 id="description"
                 placeholder="Description"
-                class="border rounded px-2 py-1"
+                class="border rounded px-4 py-2 w-full"
                 required
               />
               <button
                 type="submit"
-                class="bg-[#426B1F] px-4 py-1 rounded-md text-white"
+                class="bg-[#426B1F] px-4 py-2 rounded-md text-white w-full"
               >
-                Add
+                Add Expense
               </button>
             </form>
           </div>
