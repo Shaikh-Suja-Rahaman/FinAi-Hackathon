@@ -50,6 +50,16 @@
             required
           />
         </div>
+        <div>
+          Desired Loan Amount (₹)
+          <input
+            type="number"
+            id="loanAmount"
+            placeholder="e.g., 20000"
+            class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            required
+          />
+        </div>
         <button
           type="submit"
           class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-200"
@@ -67,5 +77,15 @@
     </div>
 
     <script src="checkLoanEligibility.js"></script>
+    <script>
+      // [Dashboard/LoanEligibility/checkLoanEligibility.js](Dashboard/LoanEligibility/checkLoanEligibility.js)
+      if (eligible) {
+        resultDiv.textContent = "Congratulations! You are eligible for the loan of ₹" + loanAmount + ".";
+        resultDiv.className = "text-green-600";
+      } else {
+        resultDiv.textContent = `Unfortunately, you are not eligible for the loan. Reason: ${reason}`;
+        resultDiv.className = "text-red-600";
+      }
+    </script>
   </body>
 </html>

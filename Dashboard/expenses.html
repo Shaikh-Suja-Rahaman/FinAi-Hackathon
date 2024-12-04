@@ -22,7 +22,12 @@
       <div id="expenseList" class="bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl mb-4">Expense History</h2>
         <div id="expenseItems"></div>
+        <div class="transaction">
+          <div id="description"></div>
+          <div id="amount-date"></div>
+        </div>
       </div>
+      <div class="text-xl">Today's Total: ₹<span id="dailyTotal">0</span></div>
     </div>
     <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
       <h2 class="text-2xl mb-4">Chatbot</h2>
@@ -33,7 +38,7 @@
           placeholder="Enter expense description"
           class="border rounded px-4 py-2 w-full"
         />
-        
+
         <button
           id="chatbotSend"
           class="bg-[#426B1F] px-4 py-2 rounded-md text-white"
@@ -45,6 +50,18 @@
     </div>
     <script src="expenses.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked@5.0.2/lib/marked.umd.min.js"></script>
-
+    <script>
+      // Before
+      container.innerHTML = todaysExpenses
+        .map(
+          (exp) => `
+          <div class="transaction">
+            <div>${exp.description}</div>
+            <div>₹${exp.amount.toFixed(2)}</div>
+          </div>
+        `
+        )
+        .join("");
+    </script>
   </body>
 </html>

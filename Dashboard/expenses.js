@@ -46,7 +46,7 @@ class DetailedExpenses {
             .map(exp => `
                 <div class="border-b py-2 flex justify-between">
                     <div>${exp.description}</div>
-                    <div>$${exp.amount.toFixed(2)} - ${new Date(exp.date).toLocaleDateString()}</div>
+                    <div>₹${exp.amount.toFixed(2)} - ${new Date(exp.date).toLocaleDateString()}</div>
                 </div>
             `).join('');
     }

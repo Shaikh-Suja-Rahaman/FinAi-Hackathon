@@ -63,6 +63,8 @@ async def add_expense(expense: dict):
         print(f"Error adding expense: {e}")
         return {"result": "false", "error": "Internal server error"}
 
+# Ensure any success or error messages related to amounts use ₹ instead of $
+
 @app.get('/expenses/{username}')
 async def get_expenses(username: str):
     try:
