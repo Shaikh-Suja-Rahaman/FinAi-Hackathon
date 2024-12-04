@@ -17,7 +17,7 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://fin-ai-hackathon.vercel.app/"],  # Specify your frontend domain
+    allow_origins=["https://fin-ai-hackathon.vercel.app/" , "*"],  # Specify your frontend domain
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
