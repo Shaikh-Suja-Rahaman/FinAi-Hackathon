@@ -14,3 +14,17 @@
 /* .text-3xl text-black {
   z-index: 10 !important;
 } */
+
+.btn-primary {
+  @apply bg-[#426B1F] px-4 py-2 rounded-md text-white w-full hover:bg-green-700 transition duration-200;
+}
+
+#myChart {
+  width: 300px !important;
+  height: 150px !important;
+}
+
+#detailedChart {
+  width: 300px !important;
+  height: 300px !important;
+}

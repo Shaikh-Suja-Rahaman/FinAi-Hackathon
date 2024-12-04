@@ -36,6 +36,7 @@ class ExpenseTracker {
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false, // Allows the chart to resize based on container
         scales: {
           y: {
             beginAtZero: true,
