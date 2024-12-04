@@ -67,7 +67,7 @@ class DetailedExpenses {
         }
 
         try {
-            const response = await fetch(`http://localhost:8000/expenses/delete/${expenseId}`, {
+            const response = await fetch(`https://finai-hackathon.onrender.com/expenses/delete/${expenseId}`, {
                 method: 'DELETE',
             });
             const result = await response.json();
