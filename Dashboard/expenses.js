@@ -225,20 +225,31 @@ document.addEventListener('DOMContentLoaded', () => {
     new DetailedExpenses();
 });
 
-const response = await fetch('https://finai-hackathon.onrender.com/expenses/add', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(expense)
-});
-if (!response.ok) {
-    const errorData = await response.json();
-    console.error('Error adding expense:', errorData.error);
-    // Handle error (e.g., display message to user)
-} else {
-    const result = await response.json();
-    if (result.result === 'true') {
-        // ...
+// Wrapped the fetch call inside an async function
+async function addExpense(expense) {
+    try {
+        const response = await fetch('https://finai-hackathon.onrender.com/expenses/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(expense)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Error adding expense:', errorData.error);
+            // Handle error (e.g., display message to user)
+        } else {
+            const result = await response.json();
+            if (result.result === 'true') {
+                // Handle success
+            }
+        }
+    } catch (error) {
+        console.error('Error adding expense:', error);
     }
 }
+
+// Example usage of the async function
+// addExpense(expense);

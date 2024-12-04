@@ -71,20 +71,29 @@
     
     
 
-    <script src="expenses.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked@5.0.2/lib/marked.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="chart.js"></script>
+<script src="expenses.js"></script>
+
     <script>
-      // Before
-      container.innerHTML = todaysExpenses
-        .map(
-          (exp) => `
-          <div class="transaction">
-            <div>${exp.description}</div>
-            <div>₹${exp.amount.toFixed(2)}</div>
-          </div>
-        `
-        )
-        .join("");
+      document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('expenseItems');
+
+        // Example data, replace with actual data as needed
+        const todaysExpenses = [
+            { description: 'Lunch', amount: 15.00 },
+            { description: 'Coffee', amount: 3.50 }
+        ];
+
+        container.innerHTML = todaysExpenses
+            .map(exp => `
+                <div class="transaction">
+                    <div>${exp.description}</div>
+                    <div>₹${exp.amount.toFixed(2)}</div>
+                </div>
+            `)
+            .join('');
+    });
 
       this.chart = new Chart(ctx, {
         type: 'line',

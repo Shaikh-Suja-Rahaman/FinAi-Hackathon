@@ -1,3 +1,4 @@
+
 class ExpenseTracker {
   constructor() {
     this.username = localStorage.getItem('currentUsername');
@@ -21,17 +22,17 @@ class ExpenseTracker {
   }
 
   initializeChart() {
-    const ctx = document.getElementById('myChart').getContext('2d');
+    const ctx = document.getElementById('detailedChart').getContext('2d');
     this.chart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: this.getLast7Days(),
+        labels: this.getLast30Days(),
         datasets: [{
-          label: 'Daily Expenses (₹)',
-          data: this.getDailyTotals(),
+          label: 'Daily Expenses',
+          data: [], // Will be populated after fetching expenses
           borderColor: '#426b1f',
-          backgroundColor: 'transparent',
-          tension: 0.1
+          backgroundColor: 'rgba(66, 107, 31, 0.1)',
+          fill: true
         }]
       },
       options: {
@@ -111,6 +112,23 @@ class ExpenseTracker {
     }).reverse();
   }
 
+  getLast30Days() {
+    return Array.from({ length: 30 }, (_, i) => {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      return d.toISOString().split('T')[0];
+    }).reverse();
+  }
+
+  getMonthlyTotals() {
+    const days = this.getLast30Days();
+    return days.map(day => {
+      return this.expenses
+        .filter(exp => exp.date.startsWith(day))
+        .reduce((sum, exp) => sum + exp.amount, 0);
+    });
+  }
+
   updateUI() {
     const today = new Date().toISOString().split('T')[0];
     const dailyTotal = this.expenses
@@ -120,7 +138,8 @@ class ExpenseTracker {
   }
 
   updateChart() {
-    this.chart.data.datasets[0].data = this.getDailyTotals();
+    const dailyTotals = this.getMonthlyTotals();
+    this.chart.data.datasets[0].data = dailyTotals;
     this.chart.update();
   }
 }
