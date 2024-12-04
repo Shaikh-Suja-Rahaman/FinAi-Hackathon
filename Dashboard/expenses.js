@@ -124,6 +124,45 @@ class DetailedExpenses {
     }
 }
 
+document.getElementById('chatbotSend').addEventListener('click', async () => {
+    const userInput = document.getElementById('expenseDescription').value.trim();
+    
+    if (userInput) {
+        // Display user message in the chat
+        displayMessage(userInput, 'user');
+        document.getElementById('expenseDescription').value = '';  // Clear input field
+        
+        // Send user input to FastAPI backend for chatbot response
+        const response = await fetch('http://127.0.0.1:8000/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: userInput }),
+        });
+
+        const data = await response.json();
+        const botResponse = data.response;
+
+        // Display chatbot response in the chat
+        displayMessage(botResponse, 'bot');
+    }
+});
+
+// Function to display messages in the chatbox
+function displayMessage(message, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', sender);
+    messageDiv.textContent = message;
+    
+    // Append message to the message area
+    const messageContainer = document.getElementById('response');
+    messageContainer.appendChild(messageDiv);
+    
+    // Scroll to the bottom of the chat
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new DetailedExpenses();
