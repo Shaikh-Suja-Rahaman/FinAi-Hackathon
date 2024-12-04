@@ -6,9 +6,12 @@ from typing import Dict
 from schema import *
 from functions import *
 from datetime import datetime
+import google.generativeai as genai
+from pydantic import BaseModel
 
 app = FastAPI()
-
+genai.configure(api_key="AIzaSyCimAqa7BwLamEjdVYVLQCQHKJZRoM9p0Y")
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 app.add_middleware(
     CORSMiddleware,
@@ -68,3 +71,13 @@ async def get_expenses(username: str):
     except Exception as e:
         print(f"Error getting expenses: {e}")
         return {"expenses": [], "error": "Internal server error"}
+class UserMessage(BaseModel):
+    message: str
+
+@app.post('/chat')
+async def chat_with_gemini(user_message: UserMessage):
+    # Replace with your Gemini chatbot API interaction
+    # For example, you may need to make an API call here to the Gemini model
+    print(user_message.message)
+    response = model.generate_content("Explain how AI works")
+    return {"response": response.text}
