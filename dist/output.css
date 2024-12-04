@@ -702,6 +702,11 @@ video {
   margin-bottom: 2rem;
 }
 
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -774,6 +779,10 @@ video {
   height: 100vh;
 }
 
+.h-80 {
+  height: 20rem;
+}
+
 .min-h-full {
   min-height: 100%;
 }
@@ -810,6 +819,10 @@ video {
   width: 100vw;
 }
 
+.w-\[80\%\] {
+  width: 80%;
+}
+
 .min-w-max {
   min-width: -moz-max-content;
   min-width: max-content;
@@ -821,6 +834,10 @@ video {
 
 .max-w-md {
   max-width: 28rem;
+}
+
+.max-w-3xl {
+  max-width: 48rem;
 }
 
 .flex-1 {
@@ -841,6 +858,10 @@ video {
 
 .grow-\[0\.9\] {
   flex-grow: 0.9;
+}
+
+.grow {
+  flex-grow: 1;
 }
 
 .-translate-x-1\/2 {
@@ -894,6 +915,14 @@ video {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.gap-1 {
+  gap: 0.25rem;
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
