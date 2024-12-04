@@ -178,7 +178,7 @@ document.getElementById('chatbotSend').addEventListener('click', async () => {
         document.getElementById('expenseDescription').value = '';  // Clear input field
 
         // Send user input to FastAPI backend for chatbot response
-        const response = await fetch('http://127.0.0.1:8000/chat', {
+        const response = await fetch('https://finai-hackathon.onrender.com//chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
