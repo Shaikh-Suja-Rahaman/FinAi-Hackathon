@@ -5,6 +5,7 @@ class ExpenseTracker {
     this.loadExpenses();
     this.initializeChart();
     this.setupEventListeners();
+    this.updateUI();
   }
 
   async loadExpenses() {
@@ -48,14 +49,15 @@ class ExpenseTracker {
     const form = document.getElementById('expenseForm');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const amount = document.getElementById('amount');
-      const description = document.getElementById('description');
-      
+      const amount = document.getElementById('amount').value;
+      const description = document.getElementById('description').value;
+      const date = document.getElementById('expenseDate').value; // Get the selected date
+
       const expense = {
         username: this.username,
-        amount: Number(amount.value),
-        description: description.value,
-        date: new Date().toISOString()
+        amount: Number(amount),
+        description: description,
+        date: new Date(date).toISOString() // Convert to ISO format
       };
 
       try {
@@ -70,8 +72,9 @@ class ExpenseTracker {
         const result = await response.json();
         if (result.result === 'true') {
           this.loadExpenses(); // Reload expenses from server
-          amount.value = '';
-          description.value = '';
+          form.reset(); // Clear the form
+        } else {
+          console.error('Error adding expense:', result.error);
         }
       } catch (error) {
         console.error('Error adding expense:', error);
@@ -96,7 +99,7 @@ class ExpenseTracker {
   }
 
   getLast7Days() {
-    return Array.from({length: 7}, (_, i) => {
+    return Array.from({ length: 7 }, (_, i) => {
       const d = new Date();
       d.setDate(d.getDate() - i);
       return d.toISOString().split('T')[0];
