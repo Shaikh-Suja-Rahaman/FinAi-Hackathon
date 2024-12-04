@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan Eligibility Checker</title>
+    <link rel="stylesheet" href="../../dist/output.css" />
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
+      <h1 class="text-2xl font-semibold mb-6 text-center">
+        Check Your Loan Eligibility
+      </h1>
+      <form id="loanEligibilityForm" class="space-y-4">
+        <div>
+          <label for="income" class="block text-gray-700"
+            >Annual Income ($)</label
+          >
+          <input
+            type="number"
+            id="income"
+            placeholder="e.g., 50000"
+            class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            required
+          />
+        </div>
+        <div>
+          <label for="creditScore" class="block text-gray-700"
+            >Credit Score</label
+          >
+          <input
+            type="number"
+            id="creditScore"
+            placeholder="e.g., 700"
+            class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            required
+            min="300"
+            max="850"
+          />
+        </div>
+        <div>
+          <label for="loanAmount" class="block text-gray-700"
+            >Desired Loan Amount ($)</label
+          >
+          <input
+            type="number"
+            id="loanAmount"
+            placeholder="e.g., 20000"
+            class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-200"
+        >
+          Check Eligibility
+        </button>
+      </form>
+      <div id="result" class="mt-4 text-center text-xl font-medium"></div>
+      <button
+        onclick="window.location.href='../index.html'"
+        class="mt-6 w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition duration-200"
+      >
+        Back to Dashboard
+      </button>
+    </div>
+
+    <script src="checkLoanEligibility.js"></script>
+  </body>
+</html>
