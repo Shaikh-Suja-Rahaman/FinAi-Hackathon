@@ -50,9 +50,8 @@ loginBtn.addEventListener('click', async (e) => {
         headers: {
             "Content-Type": "application/json"
         }
-    }) //fetch call to the api for chcecking if the username and password combo is correct
-
-    res = await res.json()
+    });
+    res = await res.json();
 
     console.log(res.result);
 
