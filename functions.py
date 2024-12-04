@@ -124,17 +124,30 @@ async def get_user_expenses(username):
             
         try:
             cursor.execute("""
-                SELECT amount, description, date 
+                SELECT id, amount, description, date 
                 FROM expenses 
                 WHERE username = %s 
                 ORDER BY date DESC
             """, (username,))
             expenses = cursor.fetchall()
             return [{
-                "amount": float(e[0]),
-                "description": e[1],
-                "date": e[2].isoformat()
+                "id": e[0],
+                "amount": float(e[1]),
+                "description": e[2],
+                "date": e[3].isoformat()
             } for e in expenses]
         except mysql.connector.Error as err:
             print(f"Error fetching expenses: {err}")
             return []
+
+async def delete_expense(expense_id: int):
+    try:
+        with get_cursor() as cursor:
+            if cursor is None:
+                return False
+
+            cursor.execute("DELETE FROM expenses WHERE id = %s", (expense_id,))
+            return cursor.rowcount > 0
+    except mysql.connector.Error as err:
+        print(f"Error deleting expense: {err}")
+        return False
