@@ -8,8 +8,10 @@ from functions import *
 from datetime import datetime
 import google.generativeai as genai
 from pydantic import BaseModel
+from mangum import Mangum
 
 app = FastAPI()
+handler = Mangum(app)
 genai.configure(api_key="AIzaSyCimAqa7BwLamEjdVYVLQCQHKJZRoM9p0Y")
 model = genai.GenerativeModel("gemini-1.5-flash")
 
@@ -20,6 +22,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get('/')
+async def root():
+    return {"message": "Welcome to the Expense Tracker API!"}
 
 @app.post('/auth')
 async def postAuth(info : loginInfo):
