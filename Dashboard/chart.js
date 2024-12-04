@@ -10,7 +10,7 @@ class ExpenseTracker {
 
   async loadExpenses() {
     try {
-      const response = await fetch(`https://finai-hackathon.onrender.com//expenses/${this.username}`);
+      const response = await fetch(`https://finai-hackathon.onrender.com/expenses/${this.username}`);
       const data = await response.json();
       this.expenses = data.expenses;
       this.updateUI();
@@ -66,7 +66,7 @@ class ExpenseTracker {
       };
 
       try {
-        const response = await fetch('https://finai-hackathon.onrender.com//expenses/add', {
+        const response = await fetch('https://finai-hackathon.onrender.com/expenses/add', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
