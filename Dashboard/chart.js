@@ -1,8 +1,8 @@
-class ExpenseTracker {
+class ChartExpenseTracker {
     constructor() {
         this.username = localStorage.getItem('currentUsername');
         this.expenses = [];
-        this.initializeChart();    // Initialize chart first
+        this.initializeChart();    // Initialize chart if canvas exists
         this.loadExpenses();       // Then load expenses
         this.setupEventListeners();
         this.updateUI();
@@ -42,7 +42,7 @@ class ExpenseTracker {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Allows the chart to resize based on container
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -153,5 +153,5 @@ class ExpenseTracker {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new ExpenseTracker();
+    new ChartExpenseTracker();
 });

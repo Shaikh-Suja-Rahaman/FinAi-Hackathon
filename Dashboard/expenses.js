@@ -14,7 +14,7 @@ class DetailedExpenses {
         }
 
         try {
-            const response = await fetch(`https://finai-h6im.onrender.com/expenses/${this.username}`);
+            const response = await fetch(`https://finai-hackathon.onrender.com/expenses/${this.username}`);
             const data = await response.json();
             if (response.ok) {
                 this.expenses = data.expenses;
