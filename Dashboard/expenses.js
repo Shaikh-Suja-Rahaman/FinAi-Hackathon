@@ -14,7 +14,7 @@ class DetailedExpenses {
         }
 
         try {
-            const response = await fetch(`http://localhost:8000/expenses/${this.username}`);
+            const response = await fetch(`https://finai-h6im.onrender.com/expenses/${this.username}`);
             const data = await response.json();
             if (response.ok) {
                 this.expenses = data.expenses;
@@ -194,6 +194,16 @@ document.getElementById('chatbotSend').addEventListener('click', async () => {
     }
 });
 
+let res = await fetch("https://finai-h6im.onrender.com/auth", {
+    method: "POST",
+    body: JSON.stringify({
+        "username": `${Username.value}`,
+        "password": `${Pass.value}`
+    }),
+    headers: {
+        "Content-Type": "application/json"
+    }
+});
 
 // Function to display messages in the chatbox
 
