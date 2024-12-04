@@ -44,52 +44,11 @@ class DetailedExpenses {
         container.innerHTML = this.expenses
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map(exp => `
-                <div class="border-b py-2 flex justify-between items-center">
-                    <div>
-                        <div>${exp.description}</div>
-                        <div>$${exp.amount.toFixed(2)} - ${new Date(exp.date).toLocaleDateString()}</div>
-                    </div>
-                    <button 
-                        class="delete-button bg-red-500 text-white px-2 py-1 rounded" 
-                        data-id="${exp.id}"
-                    >
-                        Delete
-                    </button>
+                <div class="border-b py-2 flex justify-between">
+                    <div>${exp.description}</div>
+                    <div>$${exp.amount.toFixed(2)} - ${new Date(exp.date).toLocaleDateString()}</div>
                 </div>
             `).join('');
-
-        // Add event listeners to delete buttons
-        document.querySelectorAll('.delete-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const expenseId = e.target.getAttribute('data-id');
-                this.deleteExpense(expenseId);
-            });
-        });
-    }
-
-    async deleteExpense(expenseId) {
-        try {
-            const response = await fetch('http://localhost:8000/expenses/delete', {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ id: Number(expenseId) }),
-            });
-
-            const result = await response.json();
-            if (result.result === 'true') {
-                // Remove the expense from the local array
-                this.expenses = this.expenses.filter(exp => exp.id !== Number(expenseId));
-                this.renderExpenseList();
-                this.updateDetailedChart();
-                this.renderTodaysTransactions();
-            } else {
-                console.error('Error deleting expense:', result.error);
-            }
-        } catch (error) {
-            console.error('Error deleting expense:', error);
-        }
     }
 
     renderTodaysTransactions() {
@@ -190,11 +149,13 @@ document.getElementById('chatbotSend').addEventListener('click', async () => {
     }
 });
 
+
 // Function to display messages in the chatbox
+
 function displayMessage(message, sender) {
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message', sender);
-    messageDiv.textContent = message;
+    messageDiv.innerHTML = marked.parse(message);
 
     // Append message to the message area
     const messageContainer = document.getElementById('response');

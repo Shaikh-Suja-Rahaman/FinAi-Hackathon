@@ -8,7 +8,6 @@ from functions import *
 from datetime import datetime
 import google.generativeai as genai
 from pydantic import BaseModel
-from functions import delete_expense
 
 app = FastAPI()
 genai.configure(api_key="AIzaSyCimAqa7BwLamEjdVYVLQCQHKJZRoM9p0Y")
@@ -72,22 +71,6 @@ async def get_expenses(username: str):
     except Exception as e:
         print(f"Error getting expenses: {e}")
         return {"expenses": [], "error": "Internal server error"}
-
-class DeleteExpense(BaseModel):
-    id: int
-
-@app.delete('/expenses/delete')
-async def remove_expense(expense: DeleteExpense):
-    try:
-        success = await delete_expense(expense.id)
-        if success:
-            return {"result": "true"}
-        else:
-            return {"result": "false", "error": "Expense not found"}
-    except Exception as e:
-        print(f"Error deleting expense: {e}")
-        return {"result": "false", "error": "Internal server error"}
-
 class UserMessage(BaseModel):
     message: str
 
@@ -95,5 +78,6 @@ class UserMessage(BaseModel):
 async def chat_with_gemini(user_message: UserMessage):
     # Replace with your Gemini chatbot API interaction
     # For example, you may need to make an API call here to the Gemini model
+    
     response = model.generate_content(user_message.message)
     return {"response": response.text}
