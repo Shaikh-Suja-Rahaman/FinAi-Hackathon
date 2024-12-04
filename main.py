@@ -81,13 +81,16 @@ async def get_expenses(username: str):
         return {"expenses": [], "error": "Internal server error"}
 class UserMessage(BaseModel):
     message: str
+    username: str
 
 @app.post('/chat')
 async def chat_with_gemini(user_message: UserMessage):
     # Replace with your Gemini chatbot API interaction
     # For example, you may need to make an API call here to the Gemini model
+    value = await get_user_expenses(user_message.username)
+    result = str(value)
+    response = model.generate_content(user_message.message+ ""+"Analyze the dataset of item names, costs, and purchase dates to identify where the most money is being spent and Ensure that: 1. you keep it consise probably under 8 lines but not less than 5 lines, the values are in INR.use markdown format to make it look structred with bullet points here: " + result)
     
-    response = model.generate_content(user_message.message)
     return {"response": response.text}
 
 @app.delete('/expenses/delete/{expense_id}')

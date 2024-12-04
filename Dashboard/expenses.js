@@ -183,7 +183,7 @@ document.getElementById('chatbotSend').addEventListener('click', async () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ message: userInput }),
+            body: JSON.stringify({ message: userInput, username: localStorage.getItem('currentUsername') }),
         });
 
         const data = await response.json();
