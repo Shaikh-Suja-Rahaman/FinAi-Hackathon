@@ -84,8 +84,8 @@ class DetailedExpenses {
                 datasets: [{
                     label: 'Daily Expenses',
                     data: [], // Will be populated after fetching expenses
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                    borderColor: '#426b1f',
+                    backgroundColor: 'rgba(66, 107, 31 , 0.1)',
                     fill: true
                 }]
             },

@@ -29,7 +29,7 @@ class ExpenseTracker {
         datasets: [{
           label: 'Daily Expenses (₹)',
           data: this.getDailyTotals(),
-          borderColor: 'rgba(75, 192, 192, 1)',
+          borderColor: '#426b1f',
           backgroundColor: 'transparent',
           tension: 0.1
         }]
