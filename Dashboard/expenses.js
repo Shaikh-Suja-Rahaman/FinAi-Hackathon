@@ -126,7 +126,7 @@ class DetailedExpenses {
 
 document.getElementById('chatbotSend').addEventListener('click', async () => {
     const userInput = document.getElementById('expenseDescription').value.trim();
-    
+    console.log(userInput);
     if (userInput) {
         // Display user message in the chat
         displayMessage(userInput, 'user');
