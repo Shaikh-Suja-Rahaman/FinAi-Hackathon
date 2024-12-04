@@ -108,6 +108,32 @@
           }
         }
       });
+
+      async function handleDelete(event) {
+        const expenseId = event.target.getAttribute('data-id');
+        if (!expenseId) {
+          console.error('Expense ID not found.');
+          return;
+        }
+      
+        const confirmDelete = confirm('Are you sure you want to delete this expense?');
+        if (!confirmDelete) return;
+      
+        try {
+          const response = await fetch(`http://localhost:8000/expenses/delete/${expenseId}`, {
+            method: 'DELETE',
+          });
+          const result = await response.json();
+          if (result.success) {
+            // Refresh the expenses list after deletion
+            this.fetchExpenses();
+          } else {
+            console.error('Error deleting expense:', result.error);
+          }
+        } catch (error) {
+          console.error('Error deleting expense:', error);
+        }
+      }
     </script>
   </body>
 </html>

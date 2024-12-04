@@ -141,6 +141,7 @@ async def get_user_expenses(username):
             return []
 
 async def delete_expense(expense_id: int):
+    """Delete an expense by ID"""
     try:
         with get_cursor() as cursor:
             if cursor is None:

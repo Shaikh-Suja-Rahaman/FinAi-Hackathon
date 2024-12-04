@@ -83,3 +83,11 @@ async def chat_with_gemini(user_message: UserMessage):
     
     response = model.generate_content(user_message.message)
     return {"response": response.text}
+
+@app.delete('/expenses/delete/{expense_id}')
+async def delete_expense_endpoint(expense_id: int):
+    success = await delete_expense(expense_id)
+    if success:
+        return {"success": True}
+    else:
+        return {"success": False, "error": "Failed to delete expense."}

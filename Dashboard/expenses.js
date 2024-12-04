@@ -44,11 +44,42 @@ class DetailedExpenses {
         container.innerHTML = this.expenses
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map(exp => `
-                <div class="border-b py-2 flex justify-between">
+                <div class="border-b py-2 flex justify-between items-center">
                     <div>${exp.description}</div>
                     <div>₹${exp.amount.toFixed(2)} - ${new Date(exp.date).toLocaleDateString()}</div>
+                    <button class="delete-button bg-red-500 text-white px-3 py-1 rounded" data-id="${exp.id}">
+                        Delete
+                    </button>
                 </div>
             `).join('');
+
+        // Add event listeners to delete buttons
+        document.querySelectorAll('.delete-button').forEach(button => {
+            button.addEventListener('click', (e) => this.handleDelete(e));
+        });
+    }
+
+    async handleDelete(event) {
+        const expenseId = event.target.getAttribute('data-id');
+        if (!expenseId) {
+            console.error('Expense ID not found.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:8000/expenses/delete/${expenseId}`, {
+                method: 'DELETE',
+            });
+            const result = await response.json();
+            if (result.success) {
+                // Refresh the expenses list after deletion
+                this.fetchExpenses();
+            } else {
+                console.error('Error deleting expense:', result.error);
+            }
+        } catch (error) {
+            console.error('Error deleting expense:', error);
+        }
     }
 
     renderTodaysTransactions() {
@@ -63,16 +94,29 @@ class DetailedExpenses {
 
         if (todaysExpenses.length === 0) {
             container.innerHTML = '<p>No transactions for today.</p>';
+            document.getElementById('dailyTotal').textContent = '0.00';
             return;
         }
 
         container.innerHTML = todaysExpenses
             .map(exp => `
-                <div class="transaction">
+                <div class="border-b py-2 flex justify-between items-center">
                     <div>${exp.description}</div>
-                    <div>$${exp.amount.toFixed(2)}</div>
+                    <div>₹${exp.amount.toFixed(2)} - ${new Date(exp.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                    <button class="delete-button bg-red-500 text-white px-3 py-1 rounded" data-id="${exp.id}">
+                        Delete
+                    </button>
                 </div>
             `).join('');
+
+        // Update Today's Total
+        const dailyTotal = todaysExpenses.reduce((sum, exp) => sum + exp.amount, 0);
+        document.getElementById('dailyTotal').textContent = dailyTotal.toFixed(2);
+
+        // Add event listeners to delete buttons for today's expenses
+        document.querySelectorAll('#todaysTransactions .delete-button').forEach(button => {
+            button.addEventListener('click', (e) => this.handleDelete(e));
+        });
     }
 
     initializeDetailedChart() {
@@ -91,6 +135,7 @@ class DetailedExpenses {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true
